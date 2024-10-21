@@ -2,6 +2,8 @@
 
 import { CodexCloudLogoWhite } from "@/components/images";
 import { Box, Button, styled } from "@mui/material";
+import { useState } from "react";
+import AuthDialog from "../AuthDialog/page";
 
 const StyledNavBar = styled(Box)({
   display: "flex",
@@ -26,7 +28,7 @@ const ButtonBox = styled(Box)({
   gap: "10px", // Add spacing between buttons
 });
 
-const LogInBox = styled(Button)({
+const LogInButton = styled(Button)({
   backgroundColor: "white",
   color: "black",
   "&:hover": {
@@ -34,7 +36,7 @@ const LogInBox = styled(Button)({
   },
 });
 
-const SignInBox = styled(Button)({
+const SignInButton = styled(Button)({
   backgroundColor: "white",
   color: "black",
   "&:hover": {
@@ -43,15 +45,35 @@ const SignInBox = styled(Button)({
 });
 
 const Navbar = () => {
+  const [openDialog, setOpenDialog] = useState(false); // State to control dialog visibility
+  const [isSignInMode, setIsSignInMode] = useState(true); // State to toggle between Sign In and Log In
+
+  const handleLogInClick = () => {
+    setIsSignInMode(false);
+    setOpenDialog(true);
+  };
+
+  const handleSignInClick = () => {
+    setIsSignInMode(true);
+    setOpenDialog(true);
+  };
+
   return (
     <StyledNavBar>
       <LogoBox>
         <CodexCloudLogoWhite width={300} height={60} />
       </LogoBox>
       <ButtonBox>
-        <LogInBox>Log in</LogInBox>
-        <SignInBox>Sign in</SignInBox>
+        <LogInButton onClick={handleLogInClick}>Log in</LogInButton>
+        <SignInButton onClick={handleSignInClick}>Sign in</SignInButton>
       </ButtonBox>
+
+      {/* Render AuthDialog and pass the open and mode states */}
+      <AuthDialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        isSignIn={isSignInMode}
+      />
     </StyledNavBar>
   );
 };

@@ -1,21 +1,18 @@
 "use client";
 
 import { CodexCloudLogoWhite } from "@/components/images";
-import { Box, Button, styled } from "@mui/material";
+import { AppBar, Box, Button, styled } from "@mui/material";
 import { useState } from "react";
 import AuthDialog from "../AuthDialog/page";
 
-const StyledNavBar = styled(Box)({
+const StyledNavBar = styled(AppBar)({
   display: "flex",
   justifyContent: "space-between",
-  width: "auto",
+  flexDirection: "row",
   height: "80px",
   alignItems: "center",
-  padding: " 0 25px 0 25px",
+  padding: "0 25px 0 25px",
   backgroundColor: "black",
-  position: "sticky",
-  top: 0,
-  zIndex: 10,
 });
 
 const LogoBox = styled(Box)({
@@ -44,7 +41,7 @@ const SignInButton = styled(Button)({
   },
 });
 
-const Navbar = () => {
+const FrontNavbar = () => {
   const [openDialog, setOpenDialog] = useState(false); // State to control dialog visibility
   const [isSignInMode, setIsSignInMode] = useState(true); // State to toggle between Sign In and Log In
 
@@ -78,4 +75,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default FrontNavbar;

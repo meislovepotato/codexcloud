@@ -10,16 +10,18 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { logIn, signUp } from "../../../services/authService";
+import { useRouter } from "next/navigation";
 
-const AuthDialog = ({ open, onClose, isSignIn }) => {
+const AuthDialog = ({ open, onClose }) => {
   const [formData, setFormData] = useState({
     identifier: "", // This will be used for either username or email
     password: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
-
+  const [isSignIn, setIsSignIn] = useState(false);
   const [error, setError] = useState(null); // State for storing error messages
+  const router = useRouter();
 
   const handleChange = (e) => {
     setFormData({
@@ -45,12 +47,13 @@ const AuthDialog = ({ open, onClose, isSignIn }) => {
           formData.identifier,
           formData.password
         );
-        console.log("Login Success:", token, user);
+        console.log("Login Success:", user);
 
         // Store token in localStorage (or use Context/Redux)
         localStorage.setItem("authToken", token);
 
-        alert("Login successful!"); // Or handle the response however you need
+        // Redirect to the main page after successful login
+        router.push("/Home"); // Redirect to the main page
       }
       onClose();
     } catch (error) {
@@ -59,6 +62,7 @@ const AuthDialog = ({ open, onClose, isSignIn }) => {
   };
 
   const toggleAuthMode = () => {
+    setIsSignIn((prev) => !prev);
     setFormData({ identifier: "", username: "", email: "", password: "" });
     setError(null); // Reset error on switch
   };

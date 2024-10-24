@@ -2,8 +2,7 @@
 
 import { Box, styled, Typography } from "@mui/material";
 import Spline from "@splinetool/react-spline";
-import Navbar from "./components/Navbar/page";
-import GitHubProfile from "./components/GithubProfile/page";
+import { Github, FrontNavbar } from "@/app/Components";
 
 const TypographyBox = styled(Typography)(({ theme }) => ({
   display: "flex",
@@ -20,7 +19,6 @@ const Description = styled(Typography)(({ theme }) => ({
 export default function Home() {
   return (
     <Box>
-      <Navbar />
       <Box sx={{ height: "150vh" }}>
         <Box>
           <Spline scene="https://prod.spline.design/sOSl1dkBxmqz557q/scene.splinecode" />
@@ -59,7 +57,7 @@ export default function Home() {
           </Description>
         </Box>
       </Box>
-      <GitHubProfile/>
+      <Github />
     </Box>
   );
 }

@@ -19,6 +19,7 @@ const Description = styled(Typography)(({ theme }) => ({
 export default function Home() {
   return (
     <Box>
+      <FrontNavbar />
       <Box sx={{ height: "150vh" }}>
         <Box>
           <Spline scene="https://prod.spline.design/sOSl1dkBxmqz557q/scene.splinecode" />

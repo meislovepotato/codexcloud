@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Box, Tabs, Tab, Button, TextField } from "@mui/material";
-import { Feed, Post, SideBar } from "../Components";
+import { Feed, MainNavbar, Post, SideBar } from "../Components";
 import { useRouter } from "next/navigation";
 
 export default function MainPage() {
@@ -62,6 +62,7 @@ export default function MainPage() {
         mt: 3,
       }}
     >
+      <MainNavbar />
       {/* Tabs for navigation */}
       <Tabs value={selectedTab} onChange={handleTabChange}>
         <Tab label="For You" />

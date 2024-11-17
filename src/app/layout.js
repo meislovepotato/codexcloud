@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <ThemeProvider theme={theme}>
-          <NavbarWrapper /> {/* Render Navbar logic */}
+          {/* <NavbarWrapper /> Render Navbar logic */}
           {children} {/* This will render the client-side components */}
         </ThemeProvider>
       </body>

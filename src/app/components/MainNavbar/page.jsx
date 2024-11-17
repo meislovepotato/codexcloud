@@ -1,5 +1,26 @@
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { AppBar, Toolbar, Button, styled, Box } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { CodexCloudLogoWhite } from "../../../components/images";
+
+const StyledNavBar = styled(AppBar)({
+  display: "flex",
+  justifyContent: "space-between",
+  flexDirection: "row",
+  height: "80px",
+  alignItems: "center",
+  padding: "0 25px 0 25px",
+  backgroundColor: "black",
+});
+
+const ButtonBox = styled(Box)({
+  display: "flex",
+  gap: "10px", // Add spacing between buttons
+});
+
+const LogoBox = styled(Box)({
+  display: "flex",
+  alignItems: "center",
+});
 
 const MainNavbar = () => {
   const router = useRouter();
@@ -10,11 +31,11 @@ const MainNavbar = () => {
   };
 
   return (
-    <AppBar>
+    <StyledNavBar>
       <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          CodexCloud
-        </Typography>
+        <LogoBox>
+          <CodexCloudLogoWhite width={300} height={60} />
+        </LogoBox>
         <Button color="inherit" onClick={() => router.push("/home")}>
           For You
         </Button>
@@ -28,7 +49,7 @@ const MainNavbar = () => {
           Logout
         </Button>
       </Toolbar>
-    </AppBar>
+    </StyledNavBar>
   );
 };
 

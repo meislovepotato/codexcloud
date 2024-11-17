@@ -43,7 +43,7 @@ const SignInButton = styled(Button)({
 
 const FrontNavbar = () => {
   const [openDialog, setOpenDialog] = useState(false); // State to control dialog visibility
-  const [isSignInMode, setIsSignInMode] = useState(true); // State to toggle between Sign In and Log In
+  const [isSignInMode, setIsSignInMode] = useState(true); // State to toggle between Sign Up and Log In
 
   const handleLogInClick = () => {
     setIsSignInMode(false);
@@ -62,7 +62,7 @@ const FrontNavbar = () => {
       </LogoBox>
       <ButtonBox>
         <LogInButton onClick={handleLogInClick}>Log in</LogInButton>
-        <SignInButton onClick={handleSignInClick}>Sign in</SignInButton>
+        <SignInButton onClick={handleSignInClick}>Sign up</SignInButton>
       </ButtonBox>
 
       {/* Render AuthDialog and pass the open and mode states */}

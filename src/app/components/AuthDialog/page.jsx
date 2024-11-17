@@ -69,7 +69,7 @@ const AuthDialog = ({ open, onClose }) => {
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>{isSignIn ? "Sign In" : "Log In"}</DialogTitle>
+      <DialogTitle>{isSignIn ? "Sign Up" : "Log In"}</DialogTitle>
       <DialogContent>
         {error && <Typography color="error">{error}</Typography>}
         {isSignIn && (
@@ -135,7 +135,7 @@ const AuthDialog = ({ open, onClose }) => {
         >
           {isSignIn
             ? "Already have an account? Log In"
-            : "Don't have an account? Sign In"}
+            : "Don't have an account? Sign Up"}
         </Typography>
       </DialogContent>
       <DialogActions>
@@ -143,7 +143,7 @@ const AuthDialog = ({ open, onClose }) => {
           Cancel
         </Button>
         <Button onClick={handleSubmit} color="primary">
-          {isSignIn ? "Sign In" : "Log In"}
+          {isSignIn ? "Sign Up" : "Log In"}
         </Button>
       </DialogActions>
     </Dialog>

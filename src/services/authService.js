@@ -22,7 +22,7 @@ export const fetchUserData = async () => {
   return data;
 };
 
-// Sign In (Register) function
+// Sign Up (Register) function
 export const signUp = async (username, email, password) => {
   try {
     const response = await fetch(`${BASE_URL}/register`, {

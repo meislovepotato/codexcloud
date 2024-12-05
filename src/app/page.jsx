@@ -1,10 +1,7 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { Github, FrontNavbar } from "@/app/Components";
-
-import CodexCloud from "./Components/CodexCloud/page";
-import Description from "./Components/Description/page";
+import { Github, FrontNavbar, CodexCloud, Description } from "@/app/Components";
 
 export default function Home() {
   return (

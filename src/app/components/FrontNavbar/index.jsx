@@ -3,7 +3,7 @@
 import { CodexCloudLogoWhite } from "@/components/images";
 import { AppBar, Box, Button, styled } from "@mui/material";
 import { useState } from "react";
-import AuthDialog from "../AuthDialog/page";
+import AuthDialog from "../AuthDialog";
 
 const StyledNavBar = styled(AppBar)({
   display: "flex",

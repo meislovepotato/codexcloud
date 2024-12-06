@@ -12,15 +12,16 @@ import { useState } from "react";
 import { logIn, signUp } from "../../../services/authService";
 import { useRouter } from "next/navigation";
 
+
 const AuthDialog = ({ open, onClose }) => {
   const [formData, setFormData] = useState({
-    identifier: "", // This will be used for either username or email
+    identifier: "",
     password: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
   const [isSignIn, setIsSignIn] = useState(false);
-  const [error, setError] = useState(null); // State for storing error messages
+  const [error, setError] = useState(null);
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -33,31 +34,28 @@ const AuthDialog = ({ open, onClose }) => {
   const handleSubmit = async () => {
     try {
       if (isSignIn) {
-        // Handle sign-in logic here (registration)
         const response = await signUp(
           formData.username,
           formData.email,
           formData.password
         );
         console.log("Sign Up Success:", response);
-        alert("Sign up successful!"); // Or handle the response however you need
+        alert("Sign up successful!"); 
       } else {
-        // Handle log-in logic here
         const { token, user } = await logIn(
           formData.identifier,
           formData.password
         );
+       
         console.log("Login Success:", user);
 
-        // Store token in localStorage (or use Context/Redux)
         localStorage.setItem("authToken", token);
 
-        // Redirect to the main page after successful login
-        router.push("/Home"); // Redirect to the main page
+        router.push("/Newsfeed");
       }
       onClose();
     } catch (error) {
-      setError(error.message); // Show error if something goes wrong
+      setError(error.message);
     }
   };
 

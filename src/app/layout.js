@@ -1,6 +1,5 @@
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
-import NavbarWrapper from "./Components/NavbarWrapper";
 
 export const metadata = {
   title: "CodexCloud",
@@ -12,8 +11,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <ThemeProvider theme={theme}>
-          {/* <NavbarWrapper /> Render Navbar logic */}
-          {children} {/* This will render the client-side components */}
+          {children}
         </ThemeProvider>
       </body>
     </html>

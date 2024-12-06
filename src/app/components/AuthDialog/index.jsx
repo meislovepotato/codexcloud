@@ -51,7 +51,7 @@ const AuthDialog = ({ open, onClose }) => {
 
         localStorage.setItem("authToken", token);
 
-        router.push("/Newsfeed");
+        router.push("/newsfeed");
       }
       onClose();
     } catch (error) {

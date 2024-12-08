@@ -1,30 +1,31 @@
-const BASE_URL = "http://localhost:5000"; 
+import axios from "axios";
 
-export const apiRequest = async (endpoint, method = "GET", body = null, headers = {}) => {
+const BASE_URL = "http://localhost:5000";
+
+
+export const apiRequest = async (
+  endpoint,
+  method = "GET",
+  body = null,
+  headers = {}
+) => {
   const token = localStorage.getItem("authToken");
+  
+  try {
+    const response = await axios({
+      method,
+      url: `${BASE_URL}${endpoint}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...headers,
+      },
+      data: body,
+    });
 
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
+    return response.data; // Return the payload from the response
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.error || "An error occurred"
+    );
   }
-
-  const config = {
-    method,
-    headers: {
-      "Content-Type": "application/json",
-      ...headers,
-    },
-  };
-
-  if (body) {
-    config.body = JSON.stringify(body);
-  }
-
-  const response = await fetch(`${BASE_URL}${endpoint}`, config);
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.error || "An error occurred");
-  }
-
-  return response.json();
 };

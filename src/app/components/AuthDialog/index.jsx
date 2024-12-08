@@ -9,21 +9,23 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { useState } from "react";
-import { logIn, signUp } from "../../../services/authService";
-import { useRouter } from "next/navigation";
-
+import { useRouter } from "next/navigation"; // Use the correct `useRouter` from Next.js
+import { logIn, signUp, setAuthToken } from "@services/authService"; // Corrected path for services
 
 const AuthDialog = ({ open, onClose }) => {
   const [formData, setFormData] = useState({
     identifier: "",
     password: "",
-  });
+    username: "",
+    email: "",
+  }); // Consolidated all fields into one state object
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [isSignIn, setIsSignIn] = useState(false);
-  const [error, setError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [isSignIn, setIsSignIn] = useState(false); // State to switch between Sign In and Sign Up
+  const [error, setError] = useState(null); // State to display error messages
   const router = useRouter();
 
+  // Handle input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -31,38 +33,41 @@ const AuthDialog = ({ open, onClose }) => {
     });
   };
 
-  const handleSubmit = async () => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       if (isSignIn) {
+        // Call the Sign-Up API
         const response = await signUp(
           formData.username,
           formData.email,
           formData.password
         );
         console.log("Sign Up Success:", response);
-        alert("Sign up successful!"); 
+        alert("Sign up successful!");
       } else {
+        // Call the Login API
         const { token, user } = await logIn(
           formData.identifier,
           formData.password
         );
-       
         console.log("Login Success:", user);
 
-        localStorage.setItem("authToken", token);
-
-        router.push("/newsfeed");
+        setAuthToken(token); // Save token and set headers
+        router.push("/newsfeed"); // Navigate to the newsfeed page
       }
-      onClose();
+      onClose(); // Close the dialog after success
     } catch (error) {
-      setError(error.message);
+      setError(error); // Display error message
     }
   };
 
+  // Toggle between Sign In and Sign Up modes
   const toggleAuthMode = () => {
     setIsSignIn((prev) => !prev);
-    setFormData({ identifier: "", username: "", email: "", password: "" });
-    setError(null); // Reset error on switch
+    setFormData({ identifier: "", username: "", email: "", password: "" }); // Reset fields
+    setError(null); // Clear errors
   };
 
   return (
@@ -86,7 +91,7 @@ const AuthDialog = ({ open, onClose }) => {
             margin="dense"
             label="Email"
             name="email"
-            type="email" // Ensure it's an email input
+            type="email"
             fullWidth
             variant="outlined"
             value={formData.email}
@@ -116,10 +121,7 @@ const AuthDialog = ({ open, onClose }) => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <Button
-                  onClick={() => setShowPassword((prev) => !prev)} // Toggle password visibility
-                  style={{ marginLeft: "8px" }} // Add some spacing
-                >
+                <Button onClick={() => setShowPassword((prev) => !prev)}>
                   {showPassword ? "Hide" : "Show"}
                 </Button>
               </InputAdornment>

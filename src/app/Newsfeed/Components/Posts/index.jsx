@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllPosts } from "@services/postService";
-import { Card, CardContent, Typography, Box } from "@mui/material";
+import { Card, CardContent, Typography, Box, Button } from "@mui/material";
+import { toggleLike } from "@services/likeService";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -10,14 +11,40 @@ const PostList = () => {
     const getPosts = async () => {
       try {
         const postsData = await getAllPosts();
-        setPosts(postsData);
+
+        // Add a 'liked' property to each post for initial state
+        const updatedPosts = postsData.map((post) => ({
+          ...post,
+          liked: false, // Assuming all posts are unliked initially
+        }));
+
+        setPosts(updatedPosts);
       } catch (err) {
-        setError(err); // Capture and display error messages
+        setError(err);
       }
     };
 
     getPosts();
   }, []);
+
+  const handleLikeToggle = async (postId) => {
+    try {
+      const result = await toggleLike(postId); // Call the API to toggle like
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === postId
+            ? {
+                ...post,
+                likeCount: Number(post.likeCount) + (result.liked ? 1 : -1),
+                liked: result.liked, // Update 'liked' state based on API response
+              }
+            : post
+        )
+      );
+    } catch (error) {
+      console.error("Error toggling like:", error);
+    }
+  };
 
   return (
     <Box style={{ padding: "20px" }}>
@@ -35,6 +62,13 @@ const PostList = () => {
               <Typography variant="caption" color="textSecondary">
                 Likes: {post.likeCount}
               </Typography>
+              <Button
+                variant="text"
+                color="primary"
+                onClick={() => handleLikeToggle(post.id)}
+              >
+                {post.liked ? "Unlike" : "Like"}
+              </Button>
             </CardContent>
           </Card>
         ))

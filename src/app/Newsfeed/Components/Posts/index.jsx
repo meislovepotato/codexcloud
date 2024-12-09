@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllPosts } from "@services/postService";
 import { Card, CardContent, Typography, Box, Button } from "@mui/material";
-import { toggleLike } from "@services/likeService";
+import { checkLikeStatus, toggleLike } from "@services/likeService";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -12,11 +12,13 @@ const PostList = () => {
       try {
         const postsData = await getAllPosts();
 
-        // Add a 'liked' property to each post for initial state
-        const updatedPosts = postsData.map((post) => ({
-          ...post,
-          liked: false, // Assuming all posts are unliked initially
-        }));
+        // Fetch like status for each post
+        const updatedPosts = await Promise.all(
+          postsData.map(async (post) => {
+            const liked = await checkLikeStatus(post.id); // Check if the user liked the post
+            return { ...post, liked };
+          })
+        );
 
         setPosts(updatedPosts);
       } catch (err) {

@@ -3,7 +3,7 @@
 import { Box, Button, styled } from "@mui/material";
 import { useState } from "react";
 import AuthDialog from "../AuthDialog";
-import MainHeader from "../../../components/MainHeader";
+import MainHeader from "@/components/MainHeader";
 
 const ButtonBox = styled(Box)({
   display: "flex",

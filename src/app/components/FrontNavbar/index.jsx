@@ -1,34 +1,13 @@
 "use client";
 
-import { Box, Button, styled } from "@mui/material";
 import { useState } from "react";
 import AuthDialog from "../AuthDialog";
 import MainHeader from "@/components/MainHeader";
-
-const ButtonBox = styled(Box)({
-  display: "flex",
-  gap: "10px", // Add spacing between buttons
-});
-
-const LogInButton = styled(Button)({
-  backgroundColor: "white",
-  color: "black",
-  "&:hover": {
-    backgroundColor: "#f0f0f0",
-  },
-});
-
-const SignInButton = styled(Button)({
-  backgroundColor: "white",
-  color: "black",
-  "&:hover": {
-    backgroundColor: "#f0f0f0",
-  },
-});
+import { ButtonBox, LogInButton, SignInButton } from "./styles";
 
 const FrontNavbar = () => {
   const [openDialog, setOpenDialog] = useState(false);
-  const [isSignInMode, setIsSignInMode] = useState(true); 
+  const [isSignInMode, setIsSignInMode] = useState(true);
 
   const handleLogInClick = () => {
     setIsSignInMode(false);

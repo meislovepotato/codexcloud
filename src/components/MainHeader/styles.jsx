@@ -1,6 +1,6 @@
 import { styled, AppBar, Box } from "@mui/material";
 
-export const StyledNavBar = styled(AppBar)({
+export const StyledNavBar = styled(AppBar)(({ theme }) => ({
     display: "flex",
     justifyContent: "space-between",
     flexDirection: "row",
@@ -8,9 +8,4 @@ export const StyledNavBar = styled(AppBar)({
     alignItems: "center",
     padding: "0 25px 0 25px",
     backgroundColor: "black",
-  });
-  
-export const LogoBox = styled(Box)({
-    display: "flex",
-    alignItems: "center",
-  });
+  }));

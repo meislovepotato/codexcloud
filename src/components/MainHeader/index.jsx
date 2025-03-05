@@ -1,15 +1,13 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { CodexCloudLogoWhite } from "../images";
-import { LogoBox, StyledNavBar } from "./styles";
+import { StyledNavBar } from "./styles";
+import Logo from "./components";
 
 const MainHeader = ({ children }) => {
   return (
     <StyledNavBar>
-      <LogoBox>
-        <CodexCloudLogoWhite width={300} height={60} />
-      </LogoBox>
+      <Logo />
       <Box>{children}</Box>
     </StyledNavBar>
   );

@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useRouter } from "next/navigation"; // Use the correct `useRouter` from Next.js
-import { logIn, signUp, setAuthToken } from "@services/authService"; // Corrected path for services
+import { logIn, signUp, setAuthToken } from "@/services/authService"; // Corrected path for services
 
 const AuthDialog = ({ open, onClose }) => {
   const [formData, setFormData] = useState({

@@ -14,7 +14,6 @@ axios.interceptors.request.use((config) => {
   return Promise.reject(error);
 });
 
-// Fetch all posts
 export const getAllPosts = async () => {
   try {
     const response = await axios.get(`${API_URL}/api/getallposts`);
@@ -22,5 +21,15 @@ export const getAllPosts = async () => {
   } catch (error) {
     console.error("Error fetching posts:", error.response?.data || error.message);
     throw error.response?.data?.error || "Failed to fetch posts";
+  }
+};
+
+export const createPost = async (postData) => {
+  try {
+    const response = await axios.post(`${API_URL}/api/createpost`, postData);
+    return response.data; // Returns created post data
+  } catch (error) {
+    console.error("Error creating post:", error.response?.data || error.message);
+    throw error.response?.data?.error || "Failed to create post";
   }
 };

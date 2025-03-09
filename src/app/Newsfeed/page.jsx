@@ -1,15 +1,14 @@
 "use client";
 
-import { Box } from "@mui/material";
-import FeedHeader from "./Components/FeedHeader";
-import Posts from "./Components/Posts";
+import { Posts, CreatePost, FeedHeader } from "./Components";
+import { BoxStyled } from "./styles";
 
 const Newsfeed = () => {
   return (
-    <Box>
-      <FeedHeader />
-      <Posts />
-    </Box>
+    <BoxStyled>
+        <CreatePost />
+        <Posts />
+    </BoxStyled>
   );
 };
 

@@ -1,7 +1,9 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { getAllPosts } from "@services/postService";
+import { getAllPosts } from "@/services/postService";
 import { Card, CardContent, Typography, Box, Button } from "@mui/material";
-import { checkLikeStatus, toggleLike } from "@services/likeService";
+import { checkLikeStatus, toggleLike } from "@/services/likeService";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);

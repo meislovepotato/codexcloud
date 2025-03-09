@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
+import { UnifiedNavbar } from "@/components";
 
 export const metadata = {
   title: "CodexCloud",
@@ -11,7 +12,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <ThemeProvider theme={theme}>
-          {children}
+          <UnifiedNavbar />
+
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>

@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
 import { UnifiedNavbar } from "@/components";
+import './globals.css';
 
 export const metadata = {
   title: "CodexCloud",

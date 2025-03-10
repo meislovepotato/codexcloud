@@ -12,7 +12,7 @@ import {
 } from "./styles";
 
 const CreatePost = () => {
-  const [post, setPost] = useState({ title: "", content: "" });
+  const [post, setPost] = useState({ content: "" });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -28,7 +28,7 @@ const CreatePost = () => {
     try {
       await createPost(post);
       setSuccess("Post created successfully!");
-      setPost({ title: "", content: "" });
+      setPost({ content: "" });
     } catch (err) {
       setError(err.message || "Something went wrong");
     }
@@ -43,14 +43,6 @@ const CreatePost = () => {
       {success && <SuccessMessage>{success}</SuccessMessage>}
 
       <form onSubmit={handleSubmit}>
-        <StyledInput
-          label="Title"
-          variant="outlined"
-          name="title"
-          value={post.title}
-          onChange={handleChange}
-          required
-        />
         <StyledInput
           label="Content"
           variant="outlined"

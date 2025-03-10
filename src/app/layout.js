@@ -1,7 +1,8 @@
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
 import { UnifiedNavbar } from "@/components";
-import './globals.css';
+import "./globals.css";
 
 export const metadata = {
   title: "CodexCloud",
@@ -12,11 +13,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <ThemeProvider theme={theme}>
-          <UnifiedNavbar />
-
-          <main>{children}</main>
-        </ThemeProvider>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <UnifiedNavbar />
+            <main>{children}</main>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

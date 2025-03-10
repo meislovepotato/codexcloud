@@ -6,7 +6,7 @@ import { CodexCloud, Description, Github } from "./Components";
 export default function Home() {
   return (
     <Box>
-      {/* <CodexCloud /> */}
+      <CodexCloud />
       <Description />
       <Github />
     </Box>

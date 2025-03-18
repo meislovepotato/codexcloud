@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Logo, FrontNavbar, FeedNavbar } from "./components";
 import { StyledNavBar } from "./styles";
 import { useEffect, useState } from "react";
-import { AuthDialog } from "@/app/components";
+import { AuthDialog } from "@/app/newcomponents";
 
 const UnifiedNavbar = () => {
   const [openDialog, setOpenDialog] = useState(false);

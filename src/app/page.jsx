@@ -1,7 +1,7 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { CodexCloud, Description, Github } from "./components";
+import { CodexCloud, Description, Github } from "./newcomponents";
 
 export default function Home() {
   return (

@@ -5,7 +5,7 @@ import { getAllPosts } from "@/services/postService";
 import { Card, CardContent, Typography, Box, Button } from "@mui/material";
 import { checkLikeStatus, toggleLike } from "@/services/likeService";
 
-const PostList = () => {
+const Post = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
 
@@ -84,4 +84,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default Post;

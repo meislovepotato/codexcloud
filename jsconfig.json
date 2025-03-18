@@ -5,7 +5,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/newsfeed/*": ["src/app/NewsFeed/*"]
+      "@/newsfeed/*": ["src/app/Newsfeed/*"]
     }
   }
 }

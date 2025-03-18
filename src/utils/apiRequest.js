@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
-
+const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 export const apiRequest = async (
   endpoint,
@@ -10,7 +9,7 @@ export const apiRequest = async (
   headers = {}
 ) => {
   const token = localStorage.getItem("authToken");
-  
+
   try {
     const response = await axios({
       method,
@@ -24,8 +23,6 @@ export const apiRequest = async (
 
     return response.data; // Return the payload from the response
   } catch (error) {
-    throw new Error(
-      error.response?.data?.error || "An error occurred"
-    );
+    throw new Error(error.response?.data?.error || "An error occurred");
   }
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { Posts, CreatePost, FeedHeader } from "./Components";
+import { Posts, CreatePost } from "./components";
 import { BoxStyled } from "./styles";
 
 const Newsfeed = () => {

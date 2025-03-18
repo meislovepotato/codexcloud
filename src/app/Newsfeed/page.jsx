@@ -1,13 +1,13 @@
 "use client";
 
-import { Posts, CreatePost } from "@/app/NewsFeed/components";
+import { Post, CreatePost } from "@/app/NewsFeed/components";
 import { BoxStyled } from "./styles";
 
 const Newsfeed = () => {
   return (
     <BoxStyled>
       <CreatePost />
-      <Posts />
+      <Post />
     </BoxStyled>
   );
 };

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Button,
@@ -57,7 +57,7 @@ const AuthDialog = ({ open, onClose }) => {
         console.log("Login Success:", user);
 
         setAuthToken(token); // Save token and set headers
-        router.push("/NewsFeed"); // Navigate to the newsfeed page
+        router.push("/Newsfeed"); // Navigate to the newsfeed page
       }
       onClose(); // Close the dialog after success
     } catch (error) {

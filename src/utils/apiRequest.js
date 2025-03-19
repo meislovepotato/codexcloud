@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_API_URL;
+const BASE_URL = process.env.REACT_APP_API_URL || 'https://codexcloudai-api.vercel.app/' || 'https://codexcloudai-api-meislovepotatos-projects.vercel.app/';
 
 export const apiRequest = async (
   endpoint,

@@ -1,9 +1,8 @@
 import axios from "axios";
-const API_URL = process.env.REACT_APP_API_URL;
 
 export const checkLikeStatus = async (postId) => {
   try {
-    const response = await axios.get(`${API_URL}/like/status/${postId}`);
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/like/status/${postId}`);
     return response.data.liked; // Return true or false
   } catch (error) {
     console.error("Error checking like status:", error);

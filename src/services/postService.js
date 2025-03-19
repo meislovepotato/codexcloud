@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL; // Base API URL
-
 // Set default Authorization header from token in localStorage
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem("authToken");  // Get the token from localStorage
@@ -16,7 +14,7 @@ axios.interceptors.request.use((config) => {
 
 export const getAllPosts = async () => {
   try {
-    const response = await axios.get(`${API_URL}/api/getallposts`);
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/getallposts`);
     return response.data; // Returns posts data
   } catch (error) {
     console.error("Error fetching posts:", error.response?.data || error.message);
@@ -26,7 +24,7 @@ export const getAllPosts = async () => {
 
 export const createPost = async (postData) => {
   try {
-    const response = await axios.post(`${API_URL}/api/createpost`, postData);
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/createpost`, postData);
     return response.data; // Returns created post data
   } catch (error) {
     console.error("Error creating post:", error.response?.data || error.message);

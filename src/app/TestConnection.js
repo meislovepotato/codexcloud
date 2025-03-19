@@ -6,17 +6,18 @@ export default function TestConnection() {
 
   const checkConnection = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}`, {
+      const response = await fetch('https://codexcloudai-api.vercel.app', {
         credentials: "include",
       });
       const data = await response.json();
       console.log("✅ API Response:", data);
-      setResult(data.message,  "Success!");
+      setResult(data.message, "Success!");
       alert(`✅ API Response: ${data.message || "Success!"}`);
     } catch (error) {
       console.error("❌ Connection error:", error);
       alert("❌ Connection failed!");
       setResult(data.message, "Failed!");
+
     }
   };
 

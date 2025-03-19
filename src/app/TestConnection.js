@@ -6,18 +6,25 @@ export default function TestConnection() {
 
   const checkConnection = async () => {
     try {
-      const response = await fetch('https://codexcloudai-api.vercel.app', {
+      const response = await fetch('https://codexcloudai-api.vercel.app/api/status', {
+        method: "GET",
         credentials: "include",
+        mode: "cors",
       });
+    
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+    
       const data = await response.json();
       console.log("✅ API Response:", data);
+    
       setResult(data.message, "Success!");
       alert(`✅ API Response: ${data.message || "Success!"}`);
     } catch (error) {
       console.error("❌ Connection error:", error);
       alert("❌ Connection failed!");
-      setResult(data.message, "Failed!");
-
+      setResult("Failed!");
     }
   };
 

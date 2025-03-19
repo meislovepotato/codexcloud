@@ -1,16 +1,22 @@
 "use client";
 import { useState } from "react";
-import { apiRequest } from "../utils/apiRequest";
 
 export default function TestConnection() {
   const [result, setResult] = useState("");
 
   const checkConnection = async () => {
     try {
-      const response = await apiRequest("/api/status");
-      setResult(response.message);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/status`, {
+        credentials: "include",
+      });
+      const data = await response.json();
+      console.log("✅ API Response:", data);
+      setResult(data.message,  "Success!");
+      alert(`✅ API Response: ${data.message || "Success!"}`);
     } catch (error) {
-      setResult(`Error: ${error.message}`);
+      console.error("❌ Connection error:", error);
+      alert("❌ Connection failed!");
+      setResult(data.message, "Failed!");
     }
   };
 

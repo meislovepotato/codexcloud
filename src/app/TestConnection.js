@@ -6,7 +6,7 @@ export default function TestConnection() {
 
   const checkConnection = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/status`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}`, {
         credentials: "include",
       });
       const data = await response.json();

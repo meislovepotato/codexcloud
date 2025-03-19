@@ -15,7 +15,7 @@ export const setAuthToken = (token) => {
 export const signUp = async (username, email, password) => {
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/auth/register`,
+      'https://codexcloudai-api.vercel.app/auth/register',
       {
         username,
         email,
@@ -32,7 +32,7 @@ export const signUp = async (username, email, password) => {
 export const logIn = async (identifier, password) => {
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/auth/login`,
+      'https://codexcloudai-api.vercel.app/auth/login',
       {
         identifier,
         password,

@@ -3,7 +3,7 @@
 const testConnection = async () => {
   try {
     const response = await fetch(
-      "https://codexcloudai-api.vercel.app/api/status",
+      `${process.env.NEXT_PUBLIC_API_URL}/api/status`,
       {
         method: "GET",
         credentials: "include",

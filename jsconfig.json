@@ -4,8 +4,7 @@
     "moduleResolution": "Node",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/newsfeed/*": ["src/app/Newsfeed/*"]
+      "@/*": ["./src/*"]
     }
   }
 }

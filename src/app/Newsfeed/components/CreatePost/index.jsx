@@ -11,10 +11,11 @@ import {
   SuccessMessage,
 } from "./styles";
 
-const CreatePost = () => {
+const CreatePost = ({ onPostCreated }) => {
   const [post, setPost] = useState({ content: "" });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  
 
   const handleChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
@@ -29,6 +30,9 @@ const CreatePost = () => {
       await createPost(post);
       setSuccess("Post created successfully!");
       setPost({ content: "" });
+      if (onPostCreated) {
+        onPostCreated(); // Call the parent function to refresh posts
+      }
     } catch (err) {
       setError(err.message || "Something went wrong");
     }

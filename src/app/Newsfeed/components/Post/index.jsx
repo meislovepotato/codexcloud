@@ -1,50 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getAllPosts } from "@/services/postService";
 import { Card, CardContent, Typography, Box, Button } from "@mui/material";
-import { checkLikeStatus, toggleLike } from "@/services/likeService";
+import { toggleLike } from "@/services/likeService";
 
-const Post = () => {
-  const [posts, setPosts] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const postsData = await getAllPosts();
-
-        // Fetch like status for each post
-        const updatedPosts = await Promise.all(
-          postsData.map(async (post) => {
-            const liked = await checkLikeStatus(post.id); // Check if the user liked the post
-            return { ...post, liked };
-          })
-        );
-
-        setPosts(updatedPosts);
-      } catch (err) {
-        setError(err);
-      }
-    };
-
-    getPosts();
-  }, []);
-
+const Post = ({ posts = [], error, onLikeChange }) => {
   const handleLikeToggle = async (postId) => {
     try {
-      const result = await toggleLike(postId); // Call the API to toggle like
-      setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post.id === postId
-            ? {
-                ...post,
-                likeCount: Number(post.likeCount) + (result.liked ? 1 : -1),
-                liked: result.liked, // Update 'liked' state based on API response
-              }
-            : post
-        )
-      );
+      const result = await toggleLike(postId);
+      if (onLikeChange) onLikeChange(); // Ask parent to refresh posts
     } catch (error) {
       console.error("Error toggling like:", error);
     }

@@ -1,22 +1,10 @@
 "use client";
 
-import { Box } from "@mui/material";
-import { Text, TypographyBox } from "./styles";
+import { Container, Text, TypographyBox } from "./styles";
 
 const Description = () => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 4,
-        maxWidth: 1000,
-        mx: "auto",
-        px: { xs: 2, sm: 4 },
-        py: { xs: 3, sm: 4 },
-      }}
-    >
+    <Container>
       <TypographyBox variant="h4">Welcome to CodexCloud</TypographyBox>
       <Text>
         CodexCloud is an innovative platform designed for book lovers and avid
@@ -45,7 +33,7 @@ const Description = () => {
         the written word. Together, let's explore the world of books, share our
         stories, and inspire one another to read more!
       </Text>
-    </Box>
+    </Container>
   );
 };
 

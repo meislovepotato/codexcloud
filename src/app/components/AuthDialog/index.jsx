@@ -61,7 +61,13 @@ const AuthDialog = ({ open, onClose }) => {
       }
       onClose(); // Close the dialog after success
     } catch (error) {
-      setError(error); // Display error message
+      let message = "An error occurred. Please try again.";
+      if (error?.response?.data?.message) {
+        message = error.response.data.message;
+      } else if (error?.message) {
+        message = error.message;
+      }
+      setError(message);
     }
   };
 
